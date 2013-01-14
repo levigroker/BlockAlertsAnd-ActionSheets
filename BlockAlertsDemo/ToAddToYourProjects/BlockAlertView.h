@@ -5,12 +5,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BlockAlertView : NSObject {
-@protected
-    UIView *_view;
-    NSMutableArray *_blocks;
-    CGFloat _height;
-}
+@interface BlockAlertView : NSObject
+
+@property (nonatomic, strong, readonly) UIView *view;
 
 + (BlockAlertView *)alertWithTitle:(NSString *)title message:(NSString *)message;
 
@@ -22,9 +19,5 @@
 
 - (void)show;
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
-
-@property (nonatomic, retain) UIImage *backgroundImage;
-@property (nonatomic, readonly) UIView *view;
-@property (nonatomic, readwrite) BOOL vignetteBackground;
 
 @end

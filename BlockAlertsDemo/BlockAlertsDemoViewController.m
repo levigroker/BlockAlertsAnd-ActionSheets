@@ -12,7 +12,6 @@
 #import "BlockTextPromptAlertView.h"
 
 @implementation BlockAlertsDemoViewController
-@synthesize testKeyboard;
 
 #pragma mark - View lifecycle
 
@@ -105,25 +104,33 @@
     return YES;
 }
 
+- (IBAction)showNumberPrompt:(id)sender
+{
+    UITextField *textField;
+    BlockTextPromptAlertView *alert = [BlockTextPromptAlertView promptWithTitle:@"Prompt Title" message:@"With prompts you do have to keep in mind limited screen space due to the keyboard" textField:&textField block:^(BlockTextPromptAlertView *alert){
+        [alert.textField resignFirstResponder];
+        return YES;
+    }];
+    
+    
+    [alert setCancelButtonWithTitle:@"Cancel" block:nil];
+    [alert addButtonWithTitle:@"Okay" block:^{
+        NSLog(@"Number: %@", textField.text);
+    }];
+    [alert setAllowableCharacters:@"1234567890"];
+    [alert setMaxLength:5];
+    [alert show];
+}
+
 - (IBAction)whatsArrived:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.getarrived.com"]];
 }
 
-- (IBAction)arrivedBlog:(id)sender
-{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.getarrived.com/blog/"]];
-}
 
 - (IBAction)dismissKeyboard:(id)sender
 {
     [self.testKeyboard resignFirstResponder];
-}
-
-- (void)dealloc
-{
-    [testKeyboard release];
-    [super dealloc];
 }
 
 - (void)viewDidUnload

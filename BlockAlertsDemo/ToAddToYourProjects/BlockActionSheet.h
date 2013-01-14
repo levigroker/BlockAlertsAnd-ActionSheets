@@ -8,15 +8,9 @@
 /**
  * A simple block-enabled API wrapper on top of UIActionSheet.
  */
-@interface BlockActionSheet : NSObject {
-@private
-    UIView *_view;
-    NSMutableArray *_blocks;
-    CGFloat _height;
-}
+@interface BlockActionSheet : NSObject
 
-@property (nonatomic, readonly) UIView *view;
-@property (nonatomic, readwrite) BOOL vignetteBackground;
+@property (nonatomic, strong, readonly) UIView *view;
 
 + (id)sheetWithTitle:(NSString *)title;
 

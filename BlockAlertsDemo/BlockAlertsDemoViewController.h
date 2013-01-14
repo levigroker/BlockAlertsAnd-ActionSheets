@@ -16,10 +16,10 @@
 - (IBAction)showActionSheetPlusAlert:(id)sender;
 - (IBAction)goNuts:(id)sender;
 - (IBAction)whatsArrived:(id)sender;
-- (IBAction)arrivedBlog:(id)sender;
 - (IBAction)dismissKeyboard:(id)sender;
 - (IBAction)showTextPrompt:(id)sender;
+- (IBAction)showNumberPrompt:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UITextField *testKeyboard;
+@property (strong, nonatomic) IBOutlet UITextField *testKeyboard;
 
 @end

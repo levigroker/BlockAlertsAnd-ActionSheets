@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BlockBackground : UIWindow {
-@private
-    UIWindow *_previousKeyWindow;
-}
+@interface BlockBackground : UIWindow 
 
 + (BlockBackground *) sharedInstance;
 
@@ -19,7 +16,7 @@
 - (void)reduceAlphaIfEmpty;
 - (void)removeView:(UIView *)view;
 
-@property (nonatomic, retain) UIImage *backgroundImage;
-@property (nonatomic, readwrite) BOOL vignetteBackground;
+@property (nonatomic, strong) UIImage *backgroundImage;
+@property (nonatomic, assign) BOOL vignetteBackground;
 
 @end

@@ -8,62 +8,21 @@
 
 #import "BlockBackground.h"
 
+@interface BlockBackground ()
+
+@property (nonatomic, strong) UIWindow *previousKeyWindow;
+
+@end
+
 @implementation BlockBackground
 
-@synthesize backgroundImage = _backgroundImage;
-@synthesize vignetteBackground = _vignetteBackground;
-
-static BlockBackground *_sharedInstance = nil;
-
-+ (BlockBackground*)sharedInstance
++ (BlockBackground *)sharedInstance
 {
-    if (_sharedInstance != nil) {
-        return _sharedInstance;
-    }
-
-    @synchronized(self) {
-        if (_sharedInstance == nil) {
-            [[[self alloc] init] autorelease];
-        }
-    }
-
-    return _sharedInstance;
-}
-
-+ (id)allocWithZone:(NSZone*)zone
-{
-    @synchronized(self) {
-        if (_sharedInstance == nil) {
-            _sharedInstance = [super allocWithZone:zone];
-            return _sharedInstance;
-        }
-    }
-    NSAssert(NO, @ "[BlockBackground alloc] explicitly called on singleton class.");
-    return nil;
-}
-
-- (id)copyWithZone:(NSZone*)zone
-{
-    return self;
-}
-
-- (id)retain
-{
-    return self;
-}
-
-- (unsigned)retainCount
-{
-    return UINT_MAX;
-}
-
-- (oneway void)release
-{
-}
-
-- (id)autorelease
-{
-    return self;
+    static dispatch_once_t onceQueue;
+    static BlockBackground *blockBackground = nil;
+    
+    dispatch_once(&onceQueue, ^{ blockBackground = [[self alloc] init]; });
+    return blockBackground;
 }
 
 - (id)init
@@ -83,7 +42,7 @@ static BlockBackground *_sharedInstance = nil;
 {
     if (self.hidden)
     {
-        _previousKeyWindow = [[[UIApplication sharedApplication] keyWindow] retain];
+        self.previousKeyWindow = [[UIApplication sharedApplication] keyWindow];
         self.alpha = 0.0f;
         self.hidden = NO;
         self.userInteractionEnabled = YES;
@@ -95,15 +54,13 @@ static BlockBackground *_sharedInstance = nil;
         ((UIView*)[self.subviews lastObject]).userInteractionEnabled = NO;
     }
     
-    if (_backgroundImage)
+    if (self.backgroundImage)
     {
-        UIImageView *backgroundView = [[UIImageView alloc] initWithImage:_backgroundImage];
+        UIImageView *backgroundView = [[UIImageView alloc] initWithImage:self.backgroundImage];
         backgroundView.frame = self.bounds;
         backgroundView.contentMode = UIViewContentModeScaleToFill;
         [self addSubview:backgroundView];
-        [backgroundView release];
-        [_backgroundImage release];
-        _backgroundImage = nil;
+        self.backgroundImage = nil;
     }
     
     [self addSubview:view];
@@ -132,9 +89,8 @@ static BlockBackground *_sharedInstance = nil;
     if (self.subviews.count == 0)
     {
         self.hidden = YES;
-        [_previousKeyWindow makeKeyWindow];
-        [_previousKeyWindow release];
-        _previousKeyWindow = nil;
+        [self.previousKeyWindow makeKeyWindow];
+        self.previousKeyWindow = nil;
     }
     else
     {
@@ -144,7 +100,7 @@ static BlockBackground *_sharedInstance = nil;
 
 - (void)drawRect:(CGRect)rect 
 {    
-    if (_backgroundImage || !_vignetteBackground) return;
+    if (self.backgroundImage || !self.vignetteBackground) return;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
 	size_t locationsCount = 2;
