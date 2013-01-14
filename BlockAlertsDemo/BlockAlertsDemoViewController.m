@@ -106,11 +106,12 @@
 
 - (IBAction)showNumberPrompt:(id)sender
 {
-    UITextField *textField;
+    UITextField *textField = nil;
     BlockTextPromptAlertView *alert = [BlockTextPromptAlertView promptWithTitle:@"Prompt Title" message:@"With prompts you do have to keep in mind limited screen space due to the keyboard" textField:&textField block:^(BlockTextPromptAlertView *alert){
         [alert.textField resignFirstResponder];
         return YES;
     }];
+    textField.keyboardType = UIKeyboardTypeNumberPad;
     
     
     [alert setCancelButtonWithTitle:@"Cancel" block:nil];
