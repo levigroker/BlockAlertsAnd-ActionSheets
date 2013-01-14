@@ -18,7 +18,6 @@
 
 @property (nonatomic, copy) TextFieldReturnCallBack callBack;
 @property (nonatomic, strong) NSCharacterSet *unacceptedInput;
-@property (nonatomic, assign) NSInteger maxLength;
 @property (nonatomic, assign) CGFloat height;
 
 @end
