@@ -47,7 +47,7 @@ static UIFont *buttonFont = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithTitle:(NSString *)title message:(NSString *)message 
+- (id)initWithTitle:(NSString *)title message:(NSString *)message
 {
     if ((self = [super init]))
     {
@@ -59,13 +59,14 @@ static UIFont *buttonFont = nil;
         self.view = [[UIView alloc] initWithFrame:frame];
         self.blocks = [[NSMutableArray alloc] init];
         self.height = kAlertViewBorder + 6;
-
+        self.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        
         if (title)
         {
             CGSize size = [title sizeWithFont:titleFont
                             constrainedToSize:CGSizeMake(frame.size.width-kAlertViewBorder*2, 1000)
                                 lineBreakMode:UILineBreakModeWordWrap];
-
+            
             UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(kAlertViewBorder, self.height, frame.size.width-kAlertViewBorder*2, size.height)];
             labelView.font = titleFont;
             labelView.numberOfLines = 0;
@@ -111,21 +112,21 @@ static UIFont *buttonFont = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
-- (void)addButtonWithTitle:(NSString *)title color:(NSString*)color block:(void (^)())block 
+- (void)addButtonWithTitle:(NSString *)title color:(NSString*)color block:(void (^)())block
 {
     [self.blocks addObject:[NSArray arrayWithObjects:
-                        block ? [block copy] : [NSNull null],
-                        title,
-                        color,
-                        nil]];
+                            block ? [block copy] : [NSNull null],
+                            title,
+                            color,
+                            nil]];
 }
 
-- (void)addButtonWithTitle:(NSString *)title block:(void (^)())block 
+- (void)addButtonWithTitle:(NSString *)title block:(void (^)())block
 {
     [self addButtonWithTitle:title color:@"gray" block:block];
 }
 
-- (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block 
+- (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block
 {
     [self addButtonWithTitle:title color:@"black" block:block];
 }
@@ -144,7 +145,7 @@ static UIFont *buttonFont = nil;
         NSArray *block = [self.blocks objectAtIndex:i];
         NSString *title = [block objectAtIndex:1];
         NSString *color = [block objectAtIndex:2];
-
+        
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"alert-%@-button.png", color]];
         image = [image stretchableImageWithLeftCapWidth:(int)(image.size.width+1)>>1 topCapHeight:0];
         
@@ -161,8 +162,8 @@ static UIFont *buttonFont = nil;
         {
             // In this case there's another button.
             // Let's check if they fit on the same line.
-            CGSize size = [title sizeWithFont:buttonFont 
-                                  minFontSize:10 
+            CGSize size = [title sizeWithFont:buttonFont
+                                  minFontSize:10
                                actualFontSize:nil
                                      forWidth:self.view.bounds.size.width-kAlertViewBorder*2
                                 lineBreakMode:UILineBreakModeClip];
@@ -172,8 +173,8 @@ static UIFont *buttonFont = nil;
                 // It might fit. Check the next Button
                 NSArray *block2 = [self.blocks objectAtIndex:i+1];
                 NSString *title2 = [block2 objectAtIndex:1];
-                size = [title2 sizeWithFont:buttonFont 
-                                minFontSize:10 
+                size = [title2 sizeWithFont:buttonFont
+                                minFontSize:10
                              actualFontSize:nil
                                    forWidth:self.view.bounds.size.width-kAlertViewBorder*2
                               lineBreakMode:UILineBreakModeClip];
@@ -189,12 +190,12 @@ static UIFont *buttonFont = nil;
         else if (self.blocks.count  == 1)
         {
             // In this case this is the ony button. We'll size according to the text
-            CGSize size = [title sizeWithFont:buttonFont 
-                                  minFontSize:10 
+            CGSize size = [title sizeWithFont:buttonFont
+                                  minFontSize:10
                                actualFontSize:nil
                                      forWidth:self.view.bounds.size.width-kAlertViewBorder*2
                                 lineBreakMode:UILineBreakModeClip];
-
+            
             size.width = MAX(size.width, 80);
             if (size.width + 2 * kAlertViewBorder < width)
             {
@@ -243,7 +244,7 @@ static UIFont *buttonFont = nil;
             btn.frame = frame;
         }
     }
-
+    
     CGRect frame = self.view.frame;
     frame.origin.y = - self.height;
     frame.size.height = self.height;
@@ -261,7 +262,7 @@ static UIFont *buttonFont = nil;
     }
     [BlockBackground sharedInstance].vignetteBackground = self.vignetteBackground;
     [[BlockBackground sharedInstance] addToMainWindow:self.view];
-
+    
     __block CGPoint center = self.view.center;
     center.y = floorf([BlockBackground sharedInstance].bounds.size.height * 0.5) + kAlertViewBounce;
     
@@ -271,7 +272,7 @@ static UIFont *buttonFont = nil;
                      animations:^{
                          [BlockBackground sharedInstance].alpha = 1.0f;
                          self.view.center = center;
-                     } 
+                     }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.1
                                                delay:0.0
@@ -279,12 +280,12 @@ static UIFont *buttonFont = nil;
                                           animations:^{
                                               center.y -= kAlertViewBounce;
                                               self.view.center = center;
-                                          } 
+                                          }
                                           completion:^(BOOL finished) {
                                               [[NSNotificationCenter defaultCenter] postNotificationName:@"AlertViewFinishedAnimations" object:nil];
                                           }];
                      }];
-
+    
     self.retainedSelf = self;
 }
 
@@ -308,17 +309,17 @@ static UIFont *buttonFont = nil;
                              CGPoint center = self.view.center;
                              center.y += 20;
                              self.view.center = center;
-                         } 
+                         }
                          completion:^(BOOL finished) {
                              [UIView animateWithDuration:0.4
-                                                   delay:0.0 
+                                                   delay:0.0
                                                  options:UIViewAnimationCurveEaseIn
                                               animations:^{
                                                   CGRect frame = self.view.frame;
                                                   frame.origin.y = -frame.size.height;
                                                   self.view.frame = frame;
                                                   [[BlockBackground sharedInstance] reduceAlphaIfEmpty];
-                                              } 
+                                              }
                                               completion:^(BOOL finished) {
                                                   [[BlockBackground sharedInstance] removeView:self.view];
                                                   self.view = nil;
@@ -337,7 +338,7 @@ static UIFont *buttonFont = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Action
 
-- (void)buttonClicked:(id)sender 
+- (void)buttonClicked:(id)sender
 {
     /* Run the button's block */
     int buttonIndex = [sender tag] - 1;
