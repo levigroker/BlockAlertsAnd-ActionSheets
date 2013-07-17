@@ -34,6 +34,7 @@
         self.userInteractionEnabled = NO;
         self.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.5f];
         self.vignetteBackground = NO;
+        
         [self setRotation:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setRotation:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
@@ -87,18 +88,25 @@
     self.center = newCenter;
     
     [self setNeedsLayout];
+    [self layoutSubviews];
 }
 
 - (void)addToMainWindow:(UIView *)view
 {
+    [self setRotation:nil];
+    
+    if ([self.subviews containsObject:view]) return;
+
     if (self.hidden)
     {
         self.previousKeyWindow = [[UIApplication sharedApplication] keyWindow];
         self.alpha = 0.0f;
         self.hidden = NO;
-        self.userInteractionEnabled = YES;
         [self makeKeyWindow];
     }
+    
+    // if something's been added to this window, then this window should have interaction
+    self.userInteractionEnabled = YES;
     
     if (self.subviews.count > 0)
     {
@@ -166,5 +174,8 @@
 	CGContextDrawRadialGradient (context, gradient, center, 0, center, radius, kCGGradientDrawsAfterEndLocation);
 	CGGradientRelease(gradient);
 }
+
+
+
 
 @end

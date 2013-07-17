@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		083CAFDE17974C78007D0D90 /* alert-window-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 083CAFDC17974C78007D0D90 /* alert-window-landscape.png */; };
+		083CAFDF17974C78007D0D90 /* alert-window-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 083CAFDD17974C78007D0D90 /* alert-window-landscape@2x.png */; };
+		B5422F0B1705EB6200CF13D7 /* BlockTableAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5422F0A1705EB6200CF13D7 /* BlockTableAlertView.m */; };
+		B583D771175E3C31002A35C0 /* alert-green-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B583D76F175E3C31002A35C0 /* alert-green-button.png */; };
+		B583D772175E3C31002A35C0 /* alert-green-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B583D770175E3C31002A35C0 /* alert-green-button@2x.png */; };
+		B5D5B43A1760E4BB000B5F91 /* alert-yellow-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D5B4391760E4BB000B5F91 /* alert-yellow-button@2x.png */; };
+		B5D5B43C1760E55F000B5F91 /* alert-yellow-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D5B43B1760E55F000B5F91 /* alert-yellow-button.png */; };
 		EC90169F14BB629F00EF52E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC90169E14BB629F00EF52E1 /* UIKit.framework */; };
 		EC9016A114BB629F00EF52E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9016A014BB629F00EF52E1 /* Foundation.framework */; };
 		EC9016A314BB629F00EF52E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9016A214BB629F00EF52E1 /* CoreGraphics.framework */; };
@@ -50,6 +57,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		083CAFDC17974C78007D0D90 /* alert-window-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-window-landscape.png"; sourceTree = "<group>"; };
+		083CAFDD17974C78007D0D90 /* alert-window-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-window-landscape@2x.png"; sourceTree = "<group>"; };
+		B5422F091705EB6200CF13D7 /* BlockTableAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockTableAlertView.h; sourceTree = "<group>"; };
+		B5422F0A1705EB6200CF13D7 /* BlockTableAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockTableAlertView.m; sourceTree = "<group>"; };
+		B583D76F175E3C31002A35C0 /* alert-green-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-green-button.png"; sourceTree = "<group>"; };
+		B583D770175E3C31002A35C0 /* alert-green-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-green-button@2x.png"; sourceTree = "<group>"; };
+		B5D5B4391760E4BB000B5F91 /* alert-yellow-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-yellow-button@2x.png"; sourceTree = "<group>"; };
+		B5D5B43B1760E55F000B5F91 /* alert-yellow-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-yellow-button.png"; sourceTree = "<group>"; };
 		EC90169A14BB629F00EF52E1 /* BlockAlertsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlockAlertsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC90169E14BB629F00EF52E1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EC9016A014BB629F00EF52E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -213,10 +228,16 @@
 				EC9016E114BB679C00EF52E1 /* alert-black-button@2x.png */,
 				EC9016E214BB679C00EF52E1 /* alert-gray-button.png */,
 				EC9016E314BB679C00EF52E1 /* alert-gray-button@2x.png */,
+				B583D76F175E3C31002A35C0 /* alert-green-button.png */,
+				B583D770175E3C31002A35C0 /* alert-green-button@2x.png */,
 				EC9016E414BB679C00EF52E1 /* alert-red-button.png */,
 				EC9016E514BB679C00EF52E1 /* alert-red-button@2x.png */,
+				083CAFDC17974C78007D0D90 /* alert-window-landscape.png */,
+				083CAFDD17974C78007D0D90 /* alert-window-landscape@2x.png */,
 				EC9016E614BB679C00EF52E1 /* alert-window.png */,
 				EC9016E714BB679C00EF52E1 /* alert-window@2x.png */,
+				B5D5B43B1760E55F000B5F91 /* alert-yellow-button.png */,
+				B5D5B4391760E4BB000B5F91 /* alert-yellow-button@2x.png */,
 			);
 			path = AlertView;
 			sourceTree = "<group>";
@@ -240,6 +261,8 @@
 				ECFC5EFB14EB1DA4004BFD45 /* BlockBackground.m */,
 				ECFC5EFC14EB1DA4004BFD45 /* BlockTextPromptAlertView.h */,
 				ECFC5EFD14EB1DA4004BFD45 /* BlockTextPromptAlertView.m */,
+				B5422F091705EB6200CF13D7 /* BlockTableAlertView.h */,
+				B5422F0A1705EB6200CF13D7 /* BlockTableAlertView.m */,
 			);
 			path = ToAddToYourProjects;
 			sourceTree = "<group>";
@@ -325,6 +348,12 @@
 				ECAF600314BE67BB0095B359 /* button_grey@2x.png in Resources */,
 				ECAF600414BE67BB0095B359 /* button_red.png in Resources */,
 				ECAF600514BE67BB0095B359 /* button_red@2x.png in Resources */,
+				B583D771175E3C31002A35C0 /* alert-green-button.png in Resources */,
+				B583D772175E3C31002A35C0 /* alert-green-button@2x.png in Resources */,
+				B5D5B43A1760E4BB000B5F91 /* alert-yellow-button@2x.png in Resources */,
+				B5D5B43C1760E55F000B5F91 /* alert-yellow-button.png in Resources */,
+				083CAFDE17974C78007D0D90 /* alert-window-landscape.png in Resources */,
+				083CAFDF17974C78007D0D90 /* alert-window-landscape@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +371,7 @@
 				ECFC5EFF14EB1DA4004BFD45 /* BlockAlertView.m in Sources */,
 				ECFC5F0014EB1DA4004BFD45 /* BlockBackground.m in Sources */,
 				ECFC5F0114EB1DA4004BFD45 /* BlockTextPromptAlertView.m in Sources */,
+				B5422F0B1705EB6200CF13D7 /* BlockTableAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
